@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   DESIGN TOKENS — edit these to re-theme the whole site.
+   Values are space-separated RGB channels so Tailwind can apply opacity.
+------------------------------------------------------------------- */
+:root {
+  --bg: 10 10 11;
+  --surface: 20 20 22;
+  --border: 39 39 42;
+  --fg: 244 244 245;
+  --muted: 161 161 170;
+  --accent: 245 158 11;
+  --accent-hover: 251 191 36;
+  --on-accent: 26 18 4;
+  --accent-secondary: 251 113 133;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+  ::selection {
+    background: rgb(var(--accent) / 0.35);
+    color: rgb(var(--on-accent));
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  /* Slim, themed scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--bg));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--accent) / 0.5);
+    border-radius: 999px;
+    border: 2px solid rgb(var(--bg));
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Card surface */
+  .glass {
+    @apply border border-border bg-surface shadow-card backdrop-blur-xl;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent to-accent-hover bg-clip-text text-transparent;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-accent-3;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-accent to-accent-hover text-on-accent shadow-glow hover:-translate-y-0.5 hover:brightness-110;
+    background-size: 140% 100%;
+  }
+  .btn-ghost {
+    @apply btn border border-border bg-surface text-fg hover:-translate-y-0.5 hover:border-accent/60 hover:bg-accent/[0.06];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-sm text-fg/90 transition duration-300 hover:border-accent/60 hover:bg-accent/[0.08];
+  }
+
+  .tag {
+    @apply rounded-md border border-border bg-surface px-2 py-1 font-mono text-[0.72rem] text-muted;
+  }
+
+  /* Cursor-following spotlight inside cards (set via --mx / --my in TiltCard) */
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 0%),
+      rgb(255 255 255 / 0.03),
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .noise {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(rgb(255 255 255 / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, #000 30%, transparent 75%);
+  }
+}
+
+/* Marquee: pause on hover, fade edges */
+.marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Respect reduced motion for all CSS animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .marquee-track {
+    animation: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto !important;
+  }
+  .marquee-dup {
+    display: none;
+  }
+}
