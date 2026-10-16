@@ -56,7 +56,7 @@ export const about = {
 export type SkillGroup = { category: string; blurb: string; items: string[] }
 
 export const skillGroups: SkillGroup[] = [
-  { category: 'Languages', blurb: 'Fundamentals first', items: ['Java', 'JavaScript', 'TypeScript', 'SQL', 'Python', 'C', 'Php'] },
+  { category: 'Languages', blurb: 'Fundamentals first', items: ['Java', 'JavaScript', 'TypeScript', 'SQL', 'Python', 'C', 'PHP'] },
   {
     category: 'Frontend',
     blurb: 'Fast, responsive UIs',

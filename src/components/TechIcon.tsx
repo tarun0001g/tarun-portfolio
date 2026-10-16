@@ -17,12 +17,14 @@ import {
   SiMysql,
   SiNodedotjs,
   SiPostgresql,
+  SiPhp,
   SiPrisma,
   SiPython,
   SiReact,
   SiRedux,
   SiRender,
   SiTailwindcss,
+  SiTypescript,
   SiVercel,
 } from 'react-icons/si'
 import {
@@ -43,6 +45,8 @@ import {
 const icons: Record<string, IconType> = {
   Java: FaJava,
   JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  PHP: SiPhp,
   Python: SiPython,
   C: SiC,
   'React.js': SiReact,
@@ -85,6 +89,8 @@ const concepts: Record<string, LucideIcon> = {
 const brandColors: Record<string, string> = {
   Java: '#ED8B00',
   JavaScript: '#F7DF1E',
+  TypeScript: '#3178C6',
+  PHP: '#777BB4',
   Python: '#3776AB',
   C: '#A8B9CC',
   'React.js': '#61DAFB',

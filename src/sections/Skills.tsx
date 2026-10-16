@@ -13,6 +13,8 @@ const marqueeItems = [
   'MongoDB',
   'Java',
   'JavaScript',
+  'TypeScript',
+  'PHP',
   'Axios',
   'Redux Toolkit',
   'Tailwind CSS',
