@@ -27,7 +27,7 @@ function seoFiles(siteUrl) {
 export default defineConfig(function (_a) {
     var mode = _a.mode;
     var env = loadEnv(mode, process.cwd(), '');
-    var siteUrl = env.VITE_SITE_URL || 'https://example.com';
+    var siteUrl = env.VITE_SITE_URL || 'https://tarun-portfolio-beta-three.vercel.app';
     return {
         plugins: [react(), seoFiles(siteUrl)],
         build: {

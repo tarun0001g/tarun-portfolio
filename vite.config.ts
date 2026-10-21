@@ -28,7 +28,7 @@ function seoFiles(siteUrl: string): Plugin {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const siteUrl = env.VITE_SITE_URL || 'https://example.com'
+  const siteUrl = env.VITE_SITE_URL || 'https://tarun-portfolio-beta-three.vercel.app'
   return {
     plugins: [react(), seoFiles(siteUrl)],
     build: {
